@@ -8,13 +8,9 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SelectButtonModule} from 'primeng/selectbutton';
-import { Routes, RouterModule} from '@angular/router';
-const appRoutes:Routes = [
-  {path:'',component:LoginComponent},
-  {path:'login',component:LoginComponent},
-  {path:'sing-up',component:SignUpComponent}
 
-]
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,8 +23,7 @@ const appRoutes:Routes = [
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SelectButtonModule,
-    RouterModule.forRoot(appRoutes)
+    SelectButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
