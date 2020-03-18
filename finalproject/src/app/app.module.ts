@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {RadioButtonModule} from 'primeng/radiobutton';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import { HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import {TabMenuModule} from 'primeng/tabmenu';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     LoginComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,11 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     ReactiveFormsModule,
     SelectButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    RadioButtonModule,
+    TabMenuModule,
+    ButtonModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
