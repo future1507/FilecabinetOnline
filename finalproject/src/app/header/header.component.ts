@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private http: HttpClient,private router : Router) {}
   ngOnInit(): void {
   }
+  Profile(){
+      this.router.navigateByUrl('/profile');
+    }
+  Home(){
+    this.router.navigateByUrl('/home');
+  }
+  
 
 }

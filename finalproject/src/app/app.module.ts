@@ -15,6 +15,7 @@ import {TabMenuModule} from 'primeng/tabmenu';
 import {ButtonModule} from 'primeng/button';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
+import { DocumentComponent } from './document/document.component';
 
 
 const routes: Routes = [
@@ -29,12 +30,13 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderComponent, HomeComponent,
     LoginComponent,
     SignUpComponent,
-    HomeComponent,
+   
     FooterComponent,
-    ProfileComponent
+    ProfileComponent,
+    DocumentComponent
   ],
   imports: [
     BrowserModule,
