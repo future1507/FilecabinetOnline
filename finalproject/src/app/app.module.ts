@@ -13,6 +13,18 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {ButtonModule} from 'primeng/button';
+import { Routes, RouterModule } from '@angular/router';
+import { ProfileComponent } from './profile/profile.component';
+
+
+const routes: Routes = [
+  {path:'',component:LoginComponent},
+  {path:'login',component:LoginComponent},
+  {path:'signup',component:SignUpComponent},
+  {path:'home/:Userid',component:HomeComponent},
+  {path:'profile',component:ProfileComponent},
+
+];
 
 @NgModule({
   declarations: [
@@ -21,7 +33,8 @@ import {ButtonModule} from 'primeng/button';
     LoginComponent,
     SignUpComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -32,10 +45,12 @@ import {ButtonModule} from 'primeng/button';
     HttpClientModule,
     RadioButtonModule,
     TabMenuModule,
-    ButtonModule
+    ButtonModule,
+   RouterModule.forRoot(routes)
+   
 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {  }

@@ -22,12 +22,12 @@
                      <label>Password</label>
                      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="this.Password" name="Password">
                   </div>
+                  <a routerLink="/home"></a>
+                  <a routerLink="/Signup"></a>
                   <button (click)="Login()"type="submit" class="btn btn-black">Login</button>&nbsp;&nbsp;
-                  <button (click)="Signup()" pButton type="submit" class="btn btn-secondary">Register</button>
-                  <!-- <h1>{{Email}}</h1>
-                  <h1>{{Password}}</h1> -->
+                  <button (click)="Signup()" type="submit" class="btn btn-secondary">Register</button>
+                  
                </form>
             </div>
          </div>
       </div>
-<app-footer></app-footer>
