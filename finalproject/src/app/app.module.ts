@@ -7,7 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {SelectButtonModule} from 'primeng/selectbutton';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
@@ -16,8 +16,10 @@ import {ButtonModule} from 'primeng/button';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { DocumentComponent } from './document/document.component';
-
-
+import {DialogModule} from 'primeng/dialog';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import { CabinetComponent } from './cabinet/cabinet.component';
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'login',component:LoginComponent},
@@ -30,10 +32,11 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent, HomeComponent,
+    HeaderComponent, 
+    HomeComponent,
     LoginComponent,
     SignUpComponent,
-   
+    CabinetComponent,
     FooterComponent,
     ProfileComponent,
     DocumentComponent
@@ -48,7 +51,11 @@ const routes: Routes = [
     RadioButtonModule,
     TabMenuModule,
     ButtonModule,
-   RouterModule.forRoot(routes)
+    DialogModule,
+    BrowserAnimationsModule,
+    AutoCompleteModule,
+    RouterModule.forRoot(routes),
+    
    
 
   ],

@@ -17,6 +17,12 @@ export class HeaderComponent implements OnInit {
   Home(){
     this.router.navigateByUrl('/home');
   }
+  cabinet(){
+    this.router.navigateByUrl('/cabinet');
+  }
+  document(){
+    this.router.navigateByUrl('/document()');
+  }
   
 
 }

@@ -1,38 +1,48 @@
-import { Component, Input } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ngbd-modal-content',
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title">Hi there!</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Hello, {{name}}!</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    </div>
-  `
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class NgbdModalContent {
-  @Input() name;
+export class HomeComponent implements OnInit {
 
-  constructor(public activeModal: NgbActiveModal) {}
-}
+  constructor() { }
 
-@Component({
-  selector: 'ngbd-home-component',
-  templateUrl: './home-component.html'
-})
-export class NgbdModalComponent {
-  constructor(private homeService: NgbModal) {}
-
-  open() {
-    const homeRef = this.homeService.open(NgbdModalContent);
-    homeRef.componentInstance.name = 'World';
+  ngOnInit(): void {
   }
+
+  displayModal: boolean;
+
+    displayBasic: boolean;
+
+    displayBasic2: boolean;
+
+    displayMaximizable: boolean;
+
+    displayPosition: boolean;
+
+    position: string;
+
+    showModalDialog() {
+        this.displayModal = true;
+    }
+
+    showBasicDialog() {
+        this.displayBasic = true;
+    }
+
+    showBasicDialog2() {
+        this.displayBasic2 = true;
+    }
+    
+    showMaximizableDialog() {
+        this.displayMaximizable = true;
+    }
+
+    showPositionDialog(position: string) {
+        this.position = position;
+        this.displayPosition = true;
+    }
+
 }
