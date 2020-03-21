@@ -8,13 +8,12 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { HttpClientModule,HttpClient} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {ButtonModule} from 'primeng/button';
 import { Routes, RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { DocumentComponent } from './document/document.component';
 import {DialogModule} from 'primeng/dialog';
@@ -69,11 +68,8 @@ const routes: Routes = [
     TabViewModule,
     DataViewModule,
     ScrollingModule,
-    DropdownModule,
-    HttpClient,
-    Router
-   
-
+    DropdownModule
+ 
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

@@ -4,10 +4,10 @@
 <link href="https://fonts.googleapis.com/css?family=Prompt:200&display=swap" rel="stylesheet">
 <app-header></app-header>
 <p-tabView>
-    <p-tabPanel header="เพิ่มเอกสาร" [closable]="true">
+    <p-tabPanel header="เอกสาร" >
         
     </p-tabPanel>
-    <p-tabPanel header="เพิ่มผู้มีสิทธิ์ใช้" [closable]="true">
+    <p-tabPanel header="จัดการผู้มีสิทธิ์ใช้" >
         <div style="text-align: center;">
             <button type="button" class="btn btn-secondary" style="width: 30%; font-size: 15px; ">เพิ่มผู้มีสิทธิ์ใช้</button><br>
             <br>
@@ -17,21 +17,15 @@
             <button type="button" class="btn btn-secondary" style="width: 5%; font-size: 15px; ">ลบ</button>
         </div>
     </p-tabPanel>
-    <p-tabPanel header="เพิ่มหัวเอกสาร" [selected]="true">
+    <p-tabPanel header="เพิ่มหัวเอกสาร" >
+       <br>
         <form style="text-align: center;">
             <div class="form-group">
-               <input type="email" class="form-control" placeholder="เลขเอกสาร" name="Userid">
+               <input type="text" class="form-control" placeholder="เลขเอกสาร" name="Userid">
             </div> 
             <div class="form-group">
-               <input type="email" class="form-control" placeholder="ที่มาของเอกสาร" name="Email">
+               <input type="text" class="form-control" placeholder="ที่มาของเอกสาร" name="Email">
             </div> 
-            <div class="form-group">
-               <!-- <input type="password" class="form-control" placeholder="วันที่ของเอกสาร" name="Password"> -->
-               <p-dropdown [options]="date" >
-                <!-- [(ngModel)]="selectddate"  -->
-               placeholder="Select date" optionLabel="name" [showClear]="true"></p-dropdown>
-                <!-- <p>Selected City: {{selectedCity ? selectedCity.name : 'none'}}</p> -->
-            </div>
             <div class="form-group">
               <input type="text" class="form-control" placeholder="ชื่อเรื่อง" name="firstname">
            </div>
@@ -40,9 +34,18 @@
            </div>
            <div class="form-group">
             <input type="text" class="form-control" placeholder="อ้างถึง" name="lastname">
-         </div>
-            <button type="button" class="btn btn-secondary" style="width: 30%; font-size: 15px; ">เพิ่มหัวเอกสาร</button><br>
+            </div>
+      
          </form>
+         <div >
+           <p-dropdown [options]="date" [(ngModel)]="date" placeholder="วันที่" [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>&nbsp;&nbsp;
+           <p-dropdown [options]="month" [(ngModel)]="month" placeholder="เดือน" [virtualScroll]="true" [itemSize]="12" [filter]="false"></p-dropdown>&nbsp;&nbsp;
+           <p-dropdown [options]="year" [(ngModel)]="year" placeholder="ปี พ.ศ" [virtualScroll]="true" [itemSize]="33" [filter]="false"></p-dropdown>
+         </div>   
+         <br>
+         <div style="text-align: center;">
+            <button type="button" class="btn btn-secondary" style="width: 30%; font-size: 15px; ">เพิ่มหัวเอกสาร</button><br>
+         </div>
     </p-tabPanel>
 </p-tabView>
 <app-footer></app-footer>

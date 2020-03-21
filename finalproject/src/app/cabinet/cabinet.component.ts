@@ -7,31 +7,27 @@ import { HttpClient} from '@angular/common/http';
   styleUrls: ['./cabinet.component.css']
 })
 export class CabinetComponent implements OnInit {
-    item: string;
-  // date;
-  // month;
-  // year;
+  date;
+  month;
+  year;
  
-  constructor(private http: HttpClient,private router : Router) { }
+  constructor(private http: HttpClient,private router : Router) {
+    this.date = [];
+      for (let i = 1; i <= 31; i++) {
+          this.date.push({label:  i, value: i});
+      }
+    this.month = [];
+      for (let i = 1; i <= 12; i++) {
+          this.month.push({label: i, value: i});
+      }
+    this.year=[];
+      for (let i = 2530; i <= 2563; i++) {
+        this.year.push({label: i, value: i});
+    }
+   }
   ngOnInit(): void {
   }
-  // async dmy(){
-  //   this.date = [];
-  //       for (let i = 0; i < 31; i++) {
-  //           this.date.push({label: 'date ' + i, value: 'date ' + i});
-  //       }
-  //       this.month = [];
-  //       for (let i = 0; i < 12; i++) {
-  //           this.month.push({label: 'month ' + i, value: 'month ' + i});
-  //       }
-  //       this.year=[];
-  //       for (let i = 2530; i < 2563; i++) {
-  //         this.year.push({label: 'year ' + i, value: 'year ' + i});
-  //     }
-  // }
-  this.items = [];
-        for (let i = 0; i < 10000; i++) {
-            this.items.push({label: 'Item ' + i, value: 'Item ' + i});
-        }
+
+ 
     
 }
