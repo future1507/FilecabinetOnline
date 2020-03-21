@@ -21,6 +21,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { CabinetComponent } from './cabinet/cabinet.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {MenuModule} from 'primeng/menu';
+import {FileUploadModule} from 'primeng/fileupload';
+
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'login',component:LoginComponent},
@@ -56,6 +59,8 @@ const routes: Routes = [
     DialogModule,
     BrowserAnimationsModule,
     AutoCompleteModule,
+    MenuModule,
+    FileUploadModule,
     RouterModule.forRoot(routes),
     
    
