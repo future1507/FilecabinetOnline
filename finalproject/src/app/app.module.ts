@@ -20,12 +20,14 @@ import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { CabinetComponent } from './cabinet/cabinet.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignUpComponent},
   {path:'home/:Userid',component:HomeComponent},
-  {path:'profile',component:ProfileComponent},
+  {path:'profile/:Userid',component:ProfileComponent},
+  {path:'cabinet/:Filecabinetid',component:ProfileComponent},
 
 ];
 
@@ -59,7 +61,7 @@ const routes: Routes = [
    
 
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule {  }
