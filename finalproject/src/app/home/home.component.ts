@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { DatapassService } from '../datapass.service';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-    Userid = 'future1507';
+    Userid;
     NewFilecabinetName;
     allfilecabinet;
     //FilecabinetName;     
-  constructor(private acrouter : ActivatedRoute,private http: HttpClient,private router : Router) {
+  constructor(private acrouter : ActivatedRoute,private http: HttpClient
+    ,private router : Router,private data : DatapassService) {
     this.Userid = acrouter.snapshot.params['Userid'];
-    console.log(this.Userid);
    }
 
    async ngOnInit(){
@@ -65,17 +66,14 @@ export class HomeComponent implements OnInit {
                  , Userid : this.Userid};
         let response = await this.http
           .post('http://localhost:80/webservice/newfilecabinet', JSON.stringify(json)).toPromise();
-        this.router.navigateByUrl('/home/'+this.Userid);
+        location.reload();
         return response;
     }
 
-    async ShowFilecabinet(){
+    ShowFilecabinet(){
         let response = this.http
           .get('http://localhost:80/webservice/showfilecabinet/'+this.Userid).toPromise();
         return response;
-    }
-
-    getUserid(){
-        return this.Userid;
+        
     }
 }

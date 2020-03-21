@@ -18,11 +18,11 @@
     <div *ngFor="let filecabinet of allfilecabinet; let i = index;" class="ui-g-12 ui-md-6 ui-lg-2">
         <div>
             <span class="ui-inputgroup-addon" style="font-size:200px;">
-                <a routerLink="cabinet/{{filecabinet.Filecabinetid}}"><i class="pi pi-folder"></i></a>
+                <a routerLink="/cabinet/{{filecabinet.Filecabinetid}}"><i class="pi pi-folder"></i></a>
             </span>
         </div>
         <div style="margin-top: -100px; text-align: center;">
-            <span >{{filecabinet.Name}}</span>
+            <a routerLink="/cabinet/{{filecabinet.Filecabinetid}}"><span >{{filecabinet.Name}}</span></a>
         </div>
     </div>
 

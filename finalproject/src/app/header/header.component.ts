@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { HomeComponent } from '../home/home.component';
+import { DatapassService } from '../datapass.service';
 
 
 @Component({
@@ -11,8 +11,9 @@ import { HomeComponent } from '../home/home.component';
 })
 export class HeaderComponent implements OnInit {
   Userid;
-  constructor(private http: HttpClient,private router : Router) {
-    this.Userid = HomeComponent.prototype.Userid;
+  constructor(private http: HttpClient,private router : Router
+    ,public data : DatapassService) {
+    this.Userid = data.Userid;
   }
   ngOnInit(): void {
   }

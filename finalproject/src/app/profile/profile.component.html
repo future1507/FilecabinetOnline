@@ -1,3 +1,47 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Prompt:200&display=swap" rel="stylesheet">
+<!------ Include the above in your HEAD tag ---------->
 <app-header></app-header>
-<p>profile works!</p>
+
+
+<div class="main">
+    <div class="col-md-12 col-sm-6">
+       <div >
+           <h1>My Profile</h1>
+           <br>
+          <form>
+             <div class="form-group">
+                <label>Userid</label>
+                <h5>
+                    {{this.Userid}}
+                </h5>
+             </div> 
+             <div class="form-group">
+                <label>Email</label>
+                <h5>
+                    {{this.Email}}
+                </h5>
+             </div> 
+             <div class="form-group">
+               <label>Firstname</label>
+               <input type="text" class="form-control" placeholder="Firstname" [(ngModel)]="this.firstname" name="firstname">
+            </div>
+            <div class="form-group">
+               <label>Lastname</label>
+               <input type="text" class="form-control" placeholder="Lastname" [(ngModel)]="this.lastname" name="lastname">
+            </div>
+             <div class="ui-g" style="width:250px;margin-bottom:10px">
+                <div class="ui-g-12"><p-radioButton name="group1" value="ชาย" label="ชาย" [(ngModel)]="gender" inputId="opt1"></p-radioButton></div>
+                <div class="ui-g-12"><p-radioButton name="group1" value="หญิง" label="หญิง" [(ngModel)]="gender" inputId="opt2"></p-radioButton></div>
+                
+             </div>
+             <button (click)="EditProfile()" type="submit" >บันทึก</button>&nbsp;&nbsp;
+             
+          </form>
+       </div>
+    </div>
+ </div>
+
 <app-footer></app-footer>

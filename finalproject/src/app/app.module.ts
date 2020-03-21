@@ -30,7 +30,7 @@ const routes: Routes = [
   {path:'signup',component:SignUpComponent},
   {path:'home/:Userid',component:HomeComponent},
   {path:'profile/:Userid',component:ProfileComponent},
-  {path:'cabinet/:Filecabinetid',component:ProfileComponent},
+  {path:'cabinet/:Filecabinetid',component:CabinetComponent},
 
 ];
 
