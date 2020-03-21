@@ -3,89 +3,22 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Prompt:200&display=swap" rel="stylesheet">
 <app-header></app-header>
-<div class="ui-g" style="text-align: center;">
-    <div class="ui-g-12 ui-md-6 ui-lg-3">
-        <button type="button" class="btn btn-secondary" style="width: 70%; font-size: 20px; ">เพิ่มเอกสาร</button>
-        <div class="ui-g-12 ui-md-6 ui-lg-4">
-            <div>
-                <span class="ui-inputgroup-addon" style="font-size:100px;">
-                    <i class="pi pi-folder"></i>
-                </span>
-            </div>
-            <div style="margin-top: -40px; text-align: center;">
-                <span >ชื่องาน1</span>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6 ui-lg-4">
-            <div>
-                <span class="ui-inputgroup-addon" style="font-size:100px;">
-                    <i class="pi pi-folder"></i>
-                </span>
-            </div>
-            <div style="margin-top: -40px; text-align: center;">
-                <span >ชื่องาน1</span>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-lg-4">
-            <div>
-                <span class="ui-inputgroup-addon" style="font-size:100px;">
-                    <i class="pi pi-folder"></i>
-                </span>
-            </div>
-            <div style="margin-top: -40px; text-align: center;">
-                <span >ชื่องาน1</span>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6 ui-lg-4">
-            <div>
-                <span class="ui-inputgroup-addon" style="font-size:100px;">
-                    <i class="pi pi-folder"></i>
-                </span>
-            </div>
-            <div style="margin-top: -40px; text-align: center;">
-                <span >ชื่องาน1</span>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6 ui-lg-4">
-            <div>
-                <span class="ui-inputgroup-addon" style="font-size:100px;">
-                    <i class="pi pi-folder"></i>
-                </span>
-            </div>
-            <div style="margin-top: -40px; text-align: center;">
-                <span >ชื่องาน1</span>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-lg-4">
-            <div>
-                <span class="ui-inputgroup-addon" style="font-size:100px;">
-                    <i class="pi pi-folder"></i>
-                </span>
-            </div>
-            <div style="margin-top: -40px; text-align: center;">
-                <span >ชื่องาน1</span>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="ui-g-12 ui-md-6 ui-lg-6" style="font-size: 20px;">ผู้มีสิทธิ์ใช้ <br>
-        <!-- <button type="button" class="btn btn-secondary" style="width: 40%; font-size: 20px; "></button>&nbsp; -->
-        <button type="button" class="btn btn-secondary" style="width: 30%; font-size: 15px; ">เพิ่มผู้มีสิทธิ์ใช้</button><br>
-        <div>
+<p-tabView>
+    <p-tabPanel header="เพิ่มเอกสาร" [closable]="true">
+        
+    </p-tabPanel>
+    <p-tabPanel header="เพิ่มผู้มีสิทธิ์ใช้" [closable]="true">
+        <div style="text-align: center;">
+            <button type="button" class="btn btn-secondary" style="width: 30%; font-size: 15px; ">เพิ่มผู้มีสิทธิ์ใช้</button><br>
             <br>
             นายประยุทธ์ จันทร์โอชา รักนะจุ๊บๆ คิดถึงที่สุดเลย รีบๆตายนะ เพื่อนๆรออยู่ในนรกเยอะแยะ
             <button type="button" class="btn btn-secondary" style="width: 5%; font-size: 15px; ">ลบ</button><br><br>
             นายประวิทย์ วงสุวรรณ
             <button type="button" class="btn btn-secondary" style="width: 5%; font-size: 15px; ">ลบ</button>
         </div>
-
-
-    </div>
-
-
-    <div class="ui-g-12 ui-md-6 ui-lg-3">
-        <form>
+    </p-tabPanel>
+    <p-tabPanel header="เพิ่มหัวเอกสาร" [selected]="true">
+        <form style="text-align: center;">
             <div class="form-group">
                <input type="email" class="form-control" placeholder="เลขเอกสาร" name="Userid">
             </div> 
@@ -93,7 +26,11 @@
                <input type="email" class="form-control" placeholder="ที่มาของเอกสาร" name="Email">
             </div> 
             <div class="form-group">
-               <input type="password" class="form-control" placeholder="วันที่ของเอกสาร" name="Password">
+               <!-- <input type="password" class="form-control" placeholder="วันที่ของเอกสาร" name="Password"> -->
+               <p-dropdown [options]="date" >
+                <!-- [(ngModel)]="selectddate"  -->
+               placeholder="Select date" optionLabel="name" [showClear]="true"></p-dropdown>
+                <!-- <p>Selected City: {{selectedCity ? selectedCity.name : 'none'}}</p> -->
             </div>
             <div class="form-group">
               <input type="text" class="form-control" placeholder="ชื่อเรื่อง" name="firstname">
@@ -106,6 +43,6 @@
          </div>
             <button type="button" class="btn btn-secondary" style="width: 30%; font-size: 15px; ">เพิ่มหัวเอกสาร</button><br>
          </form>
-    </div>
-</div>
+    </p-tabPanel>
+</p-tabView>
 <app-footer></app-footer>

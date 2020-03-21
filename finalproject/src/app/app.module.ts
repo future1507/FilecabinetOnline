@@ -8,12 +8,13 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule,HttpClient} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {ButtonModule} from 'primeng/button';
 import { Routes, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { DocumentComponent } from './document/document.component';
 import {DialogModule} from 'primeng/dialog';
@@ -23,7 +24,10 @@ import { CabinetComponent } from './cabinet/cabinet.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {MenuModule} from 'primeng/menu';
 import {FileUploadModule} from 'primeng/fileupload';
-
+import { TabViewModule } from 'primeng/tabview';
+import {DataViewModule} from 'primeng/dataview';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {DropdownModule} from 'primeng/dropdown';
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'login',component:LoginComponent},
@@ -62,7 +66,12 @@ const routes: Routes = [
     MenuModule,
     FileUploadModule,
     RouterModule.forRoot(routes),
-    
+    TabViewModule,
+    DataViewModule,
+    ScrollingModule,
+    DropdownModule,
+    HttpClient,
+    Router
    
 
   ],
