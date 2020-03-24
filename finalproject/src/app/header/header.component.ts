@@ -18,18 +18,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   Profile(){
-      console.log(this.Userid);
       this.router.navigateByUrl('/profile/'+this.Userid);
     }
   Home(){
     this.router.navigateByUrl('/home/'+this.Userid);
   }
-  // cabinet(){
-  //   this.router.navigateByUrl('/cabinet');
-  // }
-  // document(){
-  //   this.router.navigateByUrl('/document()');
-  // }
-  
-
+  Logout(){
+    this.router.navigateByUrl('/login');
+  }
 }

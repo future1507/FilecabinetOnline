@@ -13,18 +13,35 @@ export class HomeComponent implements OnInit {
     Userid;
     NewFilecabinetName;
     allfilecabinet;
-    //FilecabinetName;     
+  
+    
+    Names = [];
+    Filecabinetids = [];
+    Userids = [];
   constructor(private acrouter : ActivatedRoute,private http: HttpClient
     ,private router : Router,private data : DatapassService) {
     this.Userid = acrouter.snapshot.params['Userid'];
+      this.ShowFilecabinet();
+    
    }
 
    async ngOnInit(){
-    this.allfilecabinet = await this.ShowFilecabinet();
-    console.log(this.allfilecabinet);
-    /*let newfilecabinet = await this.NewFilecabinet();
-    console.log(newfilecabinet);*/
+    /*this.allfilecabinet = await this.ShowFilecabinet();
+    console.log(this.allfilecabinet);*/
+
+    /*for(let filecabinet of this.allfilecabinet){
+      this.Names.push(filecabinet.Name);
+      this.Filecabinetids.push(filecabinet.Filecabinetid);
+      this.Userids.push(filecabinet.Userid);
+    }*/
+
+    //console.log.(this.Names[0]);
+    /*for (let index = 0; index < this.Names.length; index++) {
+      console.log.(this.Names[index]);
+    }*/
+    
   }
+
 
   displayModal: boolean;
 
@@ -59,21 +76,32 @@ export class HomeComponent implements OnInit {
         this.displayPosition = true;
     }
     
+    newFilecabinet = false;
+
     async NewFilecabinet(){
+        this.newFilecabinet = true;
         console.log(this.NewFilecabinetName);
         console.log(this.Userid);
         let json = { Name : this.NewFilecabinetName
                  , Userid : this.Userid};
         let response = await this.http
           .post('http://localhost:80/webservice/newfilecabinet', JSON.stringify(json)).toPromise();
-        location.reload();
+
+        this.ShowFilecabinet();
+    }
+
+    async ShowFilecabinet(){
+        this.allfilecabinet = undefined;
+        let response = await this.http
+          .get('http://localhost:80/webservice/showfilecabinet/'+this.Userid).toPromise();
+        console.log(response);
+        this.allfilecabinet = response;
         return response;
     }
 
-    ShowFilecabinet(){
-        let response = this.http
-          .get('http://localhost:80/webservice/showfilecabinet/'+this.Userid).toPromise();
-        return response;
-        
+    GotoFilecabinet(filecabinet){
+        console.log(filecabinet);
+        this.router.navigateByUrl('/filecabinet/'+filecabinet);
     }
+
 }

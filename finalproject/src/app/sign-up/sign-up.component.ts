@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { DatapassService } from '../datapass.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,7 +15,8 @@ export class SignUpComponent implements OnInit {
   firstname;
   lastname;
   gender;
-  constructor(private http: HttpClient,private router : Router) { }
+  constructor(private http: HttpClient,private router : Router,
+    private data : DatapassService) { }
 
   ngOnInit(): void {
   }
@@ -33,7 +35,7 @@ export class SignUpComponent implements OnInit {
             , lastname : this.lastname
             , gender : this.gender};
             let response = await this.http
-            .post('http://localhost:80/webservice/signup', JSON.stringify(json)).toPromise();
+            .post(this.data.ip+'/webservice/signup', JSON.stringify(json)).toPromise();
           this.router.navigateByUrl('/login');
           return response
   }

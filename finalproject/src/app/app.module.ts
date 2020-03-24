@@ -27,13 +27,18 @@ import { TabViewModule } from 'primeng/tabview';
 import {DataViewModule} from 'primeng/dataview';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {DropdownModule} from 'primeng/dropdown';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {LightboxModule} from 'primeng/lightbox';
+
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignUpComponent},
   {path:'home/:Userid',component:HomeComponent},
   {path:'profile/:Userid',component:ProfileComponent},
-  {path:'cabinet/:Filecabinetid',component:CabinetComponent},
+  {path:'filecabinet/:Filecabinetid',component:CabinetComponent},
+  {path:'document/:Documentid',component:DocumentComponent},
+  {path: '**', component: LoginComponent}
 
 ];
 
@@ -68,7 +73,9 @@ const routes: Routes = [
     TabViewModule,
     DataViewModule,
     ScrollingModule,
-    DropdownModule
+    DropdownModule,
+    ProgressSpinnerModule,
+    LightboxModule
  
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],

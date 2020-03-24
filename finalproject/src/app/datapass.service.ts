@@ -10,7 +10,19 @@ export class DatapassService {
   firstname;
   lastname;
   gender;
-  constructor() {
+  mystatus;
 
+  ip = "http://localhost:80";
+  //localhost80 = "http://localhost:80";
+
+  User = [{Userid : this.Userid,
+          Email : this.Email,
+          Password : this.Password,
+          firstname : this.firstname,
+          lastname : this.lastname,
+          gender : this.gender}]
+  constructor() {
+       
    }
+   
 }

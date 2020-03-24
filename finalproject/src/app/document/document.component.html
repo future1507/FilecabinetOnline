@@ -1,19 +1,90 @@
 <app-header></app-header>
+<p-tabView>
+<p-tabPanel header="รายละเอียดหัวเอกสาร" >
+    <br>
+    <p-progressSpinner *ngIf= "Document == undefined" class="centerScreen">
+
+    </p-progressSpinner> 
+     <form  *ngIf= "Document != undefined">
+         <div class="form-group">
+            <label>เลขเอกสาร</label>
+            <input type="text" class="form-control" placeholder="เลขเอกสาร"  name="Documentid" [(ngModel)]="this.Documentid" >
+         </div> 
+         <div class="form-group">
+            <label>ที่มาของเอกสาร</label>
+            <input type="text" class="form-control" placeholder="ที่มาของเอกสาร"  name="Source" [(ngModel)]="this.Source">
+         </div> 
+         <div class="form-group">
+            <label>ชื่อเรื่อง</label>
+           <input type="text" class="form-control" placeholder="ชื่อเรื่อง"  name="DocName" [(ngModel)]="this.DocName">
+        </div>
+        <div class="form-group">
+            <label>ส่งถึง</label>
+           <input type="text" class="form-control" placeholder="ส่งถึง"  name="Sendto" [(ngModel)]="this.Sendto">
+        </div>
+        <div class="form-group">
+            <label>อ้างถึง</label>
+         <input type="text" class="form-control" placeholder="อ้างถึง"  name="Referto"[(ngModel)]="this.Referto">
+         </div>
+   
+      </form>
+      <label *ngIf= "Document != undefined">วันที่เอกสาร</label>
+      <div *ngIf= "Document != undefined">
+        
+        <p-dropdown [options]="dates" [(ngModel)]="Day" placeholder="{{Day}}" [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>&nbsp;&nbsp;
+        <p-dropdown [options]="months" [(ngModel)]="Month" placeholder="{{Month}}" [virtualScroll]="true" [itemSize]="12" [filter]="false"></p-dropdown>&nbsp;&nbsp;
+        <p-dropdown [options]="years" [(ngModel)]="Year" placeholder="{{Year}}" [virtualScroll]="true" [itemSize]="33" [filter]="false"></p-dropdown>
+      </div>   
+      <br>
+      <div style="text-align: center;" *ngIf= "Document != undefined">
+         <button (click)="SaveDocument()" type="button" class="btn btn-secondary" 
+         style="width: 30%; font-size: 15px; "*ngIf= "mystatus == 'ผู้รับผิดชอบ'">บันทึก</button><br>
+      </div>
+ </p-tabPanel>
+
+ <p-tabPanel header="ไฟล์" >
+    
 <div class="top">
     <div class="ui-g" style="text-align: center;">
-        <div class="ui-g-6" >
-            เอาไว้แสดงไฟล์ <br>
-           <div class="test">
+        <div class="ui-g-12" >
+            <!-- <h3>ไฟล์</h3> <br> -->
+            <p-progressSpinner *ngIf= "files == undefined" class="centerScreen2">
 
+            </p-progressSpinner> 
+           <div class="test" *ngIf= "files != undefined">
+            <!-- <a href="{{this.url}}" target="_blank">{{this.url}}</a> -->
+            <div class="ui-g" style="text-align: center; color: darkgray;" >
+               <div *ngFor="let file of files;" class="ui-g-12 ui-md-6 ui-lg-2">
+                   <div>
+                       <span class="ui-inputgroup-addon" style="font-size:100px;">
+                        <a href="{{file.Path}}" target="{{file.Path}}"><i   class="pi pi-file"></i></a>
+                       </span>
+                   </div>
+                   <!-- <div style="margin-top: -100px; text-align: center;">
+                     <span style="font-size: 15px;">id : {{file.Fileid}}</span>
+                  </div> -->
+                   <div style="margin-top: -50px; text-align: center;display: block;">
+                       <b><span style="font-size: 9px;">{{file.Name}}</span></b>
+                   </div>
+                   <br>
+                  <button *ngIf= "mystatus == 'ผู้รับผิดชอบ'" (click)="Delete(file.Fileid,file.Name)" 
+                  class="btn btn-secondary" style=" font-size: 15px; margin-top: -30px;">ลบ</button>
+               </div>
+                 
+           </div>
+            
            </div>
         </div>
-        <div class="ui-g-6">
-            <button type="button" class="btn btn-secondary" 
-            style="width: 30%; font-size: 15px; ">อัพโหลดไฟล์
+        <div class="ui-g" *ngIf= "mystatus == 'ผู้รับผิดชอบ'&&files != undefined">
+            <input type="file" name="" id="" (change)="getFile($event.target.files)">
+            <br><br>
+            <button (click)="Upload()" type="button" class="btn btn-secondary" 
+            style="width: 50%; font-size: 15px; "><i   class="pi pi-upload"></i>อัพโหลดไฟล์
         </button><br>
         </div>
         
     </div>
 </div>
-
+</p-tabPanel>
+</p-tabView>
 <app-footer></app-footer>

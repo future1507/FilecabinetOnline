@@ -4,48 +4,156 @@
 <link href="https://fonts.googleapis.com/css?family=Prompt:200&display=swap" rel="stylesheet">
 <app-header></app-header>
 <p-tabView>
-    <p-tabPanel header="เอกสาร" >
-        
-    </p-tabPanel>
-    <p-tabPanel header="จัดการผู้มีสิทธิ์ใช้" >
-        <div style="text-align: center;">
-            <button type="button" class="btn btn-secondary" style="width: 30%; font-size: 15px; ">เพิ่มผู้มีสิทธิ์ใช้</button><br>
-            <br>
-            นายประยุทธ์ จันทร์โอชา รักนะจุ๊บๆ คิดถึงที่สุดเลย รีบๆตายนะ เพื่อนๆรออยู่ในนรกเยอะแยะ
-            <button type="button" class="btn btn-secondary" style="width: 5%; font-size: 15px; ">ลบ</button><br><br>
-            นายประวิทย์ วงสุวรรณ
-            <button type="button" class="btn btn-secondary" style="width: 5%; font-size: 15px; ">ลบ</button>
+    <p-tabPanel header="เอกสาร" >   
+        <p-progressSpinner *ngIf= "alldocument == undefined" class="centerScreen">
+
+        </p-progressSpinner> 
+   <p-dataView #dv [value]="alldocument" [paginator]="true" [rows]="5" paginatorPosition="both" filterBy="Name" *ngIf= "alldocument != undefined">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-6 ui-md-4 filter-container">
+                  <div style="position:relative">
+                      <input type="search" pInputText placeholder="ค้นหาด้วยชื่อเรื่่อง" (input)="dv.filter($event.target.value)">
+                  </div>
+              </div>
+              <div class="ui-g-6 ui-md-4" style="text-align:center">
+               <h1>{{this.ShowFilecabinetName}}</h1>
+              </div>
+              <div class="ui-g-6 ui-md-4" style="text-align:right" *ngIf= "mystatus == 'ผู้รับผิดชอบ'">
+                <button (click)="ChangeFilecabinetnameDialog()" type="button" class="btn btn-secondary" >เปลี่ยนชื่อตู้เอกสาร</button>&nbsp;
+                <p-dialog header="เปลี่ยนชื่อตู้เอกสาร" [(visible)]="changeFilecabinetname" [style]="{width: '15vw'}" [baseZIndex]="10000">
+                   <div class="ui-inputgroup"> 
+                       <input type="text" [(ngModel)]="this.FilecabinetName">         
+                   </div>
+                   <p-footer>
+                   <button  (click)="ChangeFilecabinetname()" type="button" pButton icon="pi pi-check" (click)="changeFilecabinetname=false" label="บันทึก" ></button>
+                   <!-- <button type="button" pButton icon="pi pi-times" (click)="changeFilecabinetname=false" label="ยกเลิก" class="ui-button-secondary"></button> -->
+                   </p-footer>
+               </p-dialog>
+               <button (click)="DeleteFilecabinet()" type="button" class="btn btn-secondary"
+               *ngIf= "alldocument.length == 0">ลบตู้เอกสาร</button>
+              </div>
+            </div>
         </div>
+    </p-header>
+    
+    <ng-template let-document pTemplate="listItem">
+        <div class="ui-g-12">
+            <div class="document-details">
+                <div>
+                    <img src="assets/document.png" width="200">
+                    <div class="ui-g-10">
+                        <div class="ui-g-12">เลขเอกสาร: <b>{{document.Documentid}}</b></div>
+                        <div class="ui-g-12">ชื่อเรื่อง: <b>{{document.Name}}</b></div>
+                        <div class="ui-g-12">ที่มาของเอกสาร: <b>{{document.Source}}</b></div>
+                        <div class="ui-g-12">ส่งถึง: <b>{{document.Sendto}}</b></div>
+                        <div class="ui-g-12">อ้างถึง: <b>{{document.Referto}}</b></div>
+                        <div class="ui-g-12">วันที่ของเอกสาร: <b>{{document.Date}}</b></div>
+                    </div>
+                    <button (click)="GotoDocument(document.id)" pButton type="button" icon="pi pi-info-circle" ></button>
+                </div>
+                <hr>
+            </div>
+        </div>
+        
+        
+    </ng-template>
+</p-dataView>
     </p-tabPanel>
-    <p-tabPanel header="เพิ่มหัวเอกสาร" >
+
+     
+    <p-tabPanel header="ผู้มีสิทธิ์ใช้งานตู้เอกสาร" >
+       <h2 style="text-align: center">ผู้มีสิทธิ์ใช้งาน</h2>
+        <div style="text-align: right" *ngIf= "mystatus == 'ผู้รับผิดชอบ'">
+
+            <button (click)="AddUserDialog()" type="button" class="btn btn-secondary" style="width: 10%; font-size: 15px; ">เพิ่มผู้ใช้งาน</button>&nbsp;
+            <p-dialog header="เพิ่มผู้ใช้งาน" [(visible)]="addUser" [style]="{width: '13vw'}" [baseZIndex]="10000">
+               <div class="ui-inputgroup"> 
+                   <input type="text" pInputText placeholder="ไอดีผู้ใช้งาน" [(ngModel)]="this.AddUserid">         
+               </div>
+               <p-footer>
+               <button  (click)="AddUser()" type="button" pButton icon="pi pi-check" (click)="addUser=false" label="เพิ่ม" ></button>
+               <button type="button" pButton icon="pi pi-times" (click)="addUser=false" label="ยกเลิก" class="ui-button-secondary"></button>
+               </p-footer>
+           </p-dialog>
+           <button (click)="AddResponsibleDialog()" type="button" class="btn btn-secondary" style="width: 10%; font-size: 15px; ">เพิ่มผู้รับผิดชอบ</button><br>
+            <p-dialog header="เพิ่มผู้รับผิดชอบ" [(visible)]="addResponsible" [style]="{width: '13vw'}" [baseZIndex]="10000">
+               <div class="ui-inputgroup"> 
+                   <input type="text" pInputText placeholder="ไอดีผู้รับผิดชอบ" [(ngModel)]="this.AddResponsibleid">         
+               </div>
+               <p-footer>
+               <button (click)="AddResponsible()" type="button" pButton icon="pi pi-check" (click)="addResponsible=false" label="เพิ่ม" ></button>
+               <button type="button" pButton icon="pi pi-times" (click)="addResponsible=false" label="ยกเลิก" class="ui-button-secondary"></button>
+               </p-footer>
+           </p-dialog>
+           
+        </div>
+        <br>
+        <p-progressSpinner *ngIf= "alleligibility == undefined" class="centerScreen">
+
+        </p-progressSpinner>
+        <table class="table table-striped" *ngIf= "alleligibility != undefined">
+         <thead>
+            <tr>
+              <th>Userid</th>
+              <th>ชื่อ</th>
+              <th>นามสกุล</th>
+              <th>สถานะ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let eligibility of alleligibility; let i = index;">
+               <td>{{eligibility.Userid}}</td>
+               <td>{{eligibility.firstname}}</td>
+               <td>{{eligibility.lastname}}</td>
+               <td >{{eligibility.Userstatus}}
+                  <button *ngIf= "mystatus == 'ผู้รับผิดชอบ' && eligibility.Userid != this.Userid" type="button" 
+                  class="btn btn-secondary float-right" style="font-size: 15px;" (click)="DeleteEligibility(eligibility.Userid)">
+                    ลบ</button>
+               </td>    
+            </tr>   
+          </tbody>
+        </table>
+    </p-tabPanel>
+    <p-tabPanel header="เพิ่มหัวเอกสาร" *ngIf= "mystatus == 'ผู้รับผิดชอบ'">
        <br>
         <form style="text-align: center;">
             <div class="form-group">
-               <input type="text" class="form-control" placeholder="เลขเอกสาร" name="Userid">
+               <input type="text" class="form-control" placeholder="เลขเอกสาร" [(ngModel)]="this.Documentid" name="Documentid">
             </div> 
             <div class="form-group">
-               <input type="text" class="form-control" placeholder="ที่มาของเอกสาร" name="Email">
+               <input type="text" class="form-control" placeholder="ที่มาของเอกสาร" [(ngModel)]="this.Source" name="Source">
             </div> 
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="ชื่อเรื่อง" name="firstname">
+              <input type="text" class="form-control" placeholder="ชื่อเรื่อง" [(ngModel)]="this.DocName" name="DocName">
            </div>
            <div class="form-group">
-              <input type="text" class="form-control" placeholder="ส่งถึง" name="lastname">
+              <input type="text" class="form-control" placeholder="ส่งถึง" [(ngModel)]="this.Sendto" name="Sendto">
            </div>
            <div class="form-group">
-            <input type="text" class="form-control" placeholder="อ้างถึง" name="lastname">
+            <input type="text" class="form-control" placeholder="อ้างถึง" [(ngModel)]="this.Referto" name="Referto">
             </div>
       
          </form>
          <div >
-           <p-dropdown [options]="date" [(ngModel)]="date" placeholder="วันที่" [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>&nbsp;&nbsp;
-           <p-dropdown [options]="month" [(ngModel)]="month" placeholder="เดือน" [virtualScroll]="true" [itemSize]="12" [filter]="false"></p-dropdown>&nbsp;&nbsp;
-           <p-dropdown [options]="year" [(ngModel)]="year" placeholder="ปี พ.ศ" [virtualScroll]="true" [itemSize]="33" [filter]="false"></p-dropdown>
+           <p-dropdown [options]="dates" [(ngModel)]="date" placeholder="วันที่" [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>&nbsp;&nbsp;
+           <p-dropdown [options]="months" [(ngModel)]="month" placeholder="เดือน" [virtualScroll]="true" [itemSize]="12" [filter]="false"></p-dropdown>&nbsp;&nbsp;
+           <p-dropdown [options]="years" [(ngModel)]="year" placeholder="ปี พ.ศ" [virtualScroll]="true" [itemSize]="33" [filter]="false"></p-dropdown>
          </div>   
          <br>
          <div style="text-align: center;">
-            <button type="button" class="btn btn-secondary" style="width: 30%; font-size: 15px; ">เพิ่มหัวเอกสาร</button><br>
+            <input type="file" name="" id="" (change)="getFile($event.target.files)">
+            <br><br>
+            <button (click)="AddDocument1()" type="button" class="btn btn-secondary" style="width: 20%; font-size: 15px; ">เพิ่มเฉพาะหัวเอกสาร</button>&nbsp;&nbsp;
+            <button (click)="AddDocument2()" type="button" class="btn btn-secondary" style="width: 20%; font-size: 15px; ">เพิ่มหัวเอกสารพร้อมไฟล์</button><br>
          </div>
+         <div class="ui-g-12">
+            
+            
+        </div>
+         <!-- <input type="file" name="" id="" (change)="getFile($event.target.files)">
+         <button>Uploadfile</button> -->
     </p-tabPanel>
 </p-tabView>
 <app-footer></app-footer>
