@@ -12,6 +12,7 @@ export class DatapassService {
   gender;
   mystatus;
 
+
   ip = "http://192.168.255.33";
   //localhost80 = "http://localhost:80";
 
