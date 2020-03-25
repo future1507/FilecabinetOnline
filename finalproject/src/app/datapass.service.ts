@@ -12,7 +12,7 @@ export class DatapassService {
   gender;
   mystatus;
 
-  ip = "http://localhost:80";
+  ip = "http://192.168.255.13";
   //localhost80 = "http://localhost:80";
 
   User = [{Userid : this.Userid,
