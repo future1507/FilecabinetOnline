@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
         let json = { Name : this.NewFilecabinetName
                  , Userid : this.Userid};
         let response = await this.http
-          .post('http://localhost:80/webservice/newfilecabinet', JSON.stringify(json)).toPromise();
+          .post(this.data.ip+'/webservice/newfilecabinet', JSON.stringify(json)).toPromise();
 
         this.ShowFilecabinet();
     }
@@ -94,7 +94,7 @@ export class HomeComponent implements OnInit {
     async ShowFilecabinet(){
         this.allfilecabinet = undefined;
         let response = await this.http
-          .get('http://localhost:80/webservice/showfilecabinet/'+this.Userid).toPromise();
+          .get(this.data.ip+'/webservice/showfilecabinet/'+this.Userid).toPromise();
         console.log(response);
         this.allfilecabinet = response;
         return response;
