@@ -12,7 +12,7 @@ export class DatapassService {
   gender;
   mystatus;
 
-  ip = "http://192.168.255.13";
+  ip = "http://192.168.255.25";
   //localhost80 = "http://localhost:80";
 
   User = [{Userid : this.Userid,
@@ -24,5 +24,8 @@ export class DatapassService {
   constructor() {
        
    }
+   /*Order allow,deny
+    Allow from 127.0.0.1
+    Satisfy all*/ 
    
 }
