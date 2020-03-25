@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
   constructor(private acrouter : ActivatedRoute,private http: HttpClient
     ,private router : Router,private data : DatapassService) {
     this.Userid = acrouter.snapshot.params['Userid'];
-      this.ShowFilecabinet();
+    //console.log("ip="+this.data.ip);
+    this.ShowFilecabinet();
     
    }
 

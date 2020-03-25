@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit {
   Userid;
   profile;
   constructor(private http: HttpClient,private router : Router
-    ,public data : DatapassService) { }
+    ,public data : DatapassService) {
+      console.log("ip="+this.data.ip);
+     }
 
   async ngOnInit(){
   }
