@@ -50,13 +50,19 @@
                <form>
                   <div class="form-group">
                     <label>รหัสผ่านเดิม</label><br>
-                    <input [type]="show ? 'text' : 'password'" class="form-control-lg" placeholder="รหัสผ่านเดิม" [(ngModel)]="this.OldPassword" name="OldPassword">&nbsp;
-                    <button (click)="newpassword()" type="password" class="btn btn-black" style="color: black; font-size: 30px;" > <i class="pi pi-eye-slash"></i></button>
+                    <input [type]="showpassword ? 'text' : 'password'" class="form-control-lg" placeholder="รหัสผ่านเดิม" [(ngModel)]="this.OldPassword" name="OldPassword">&nbsp;
+                    <button (click)="password()" type="password" class="btn btn-black" style="color: black; font-size: 30px;" > 
+                     <i *ngIf= "showpassword == false" class="pi pi-eye-slash"></i>
+                     <i *ngIf= "showpassword == true" class="pi pi-eye"></i>
+                  </button>
                   </div>
                  <div class="form-group">
                     <label>รหัสผ่านใหม่</label> <br>
-                    <input [type]="show ? 'text' : 'newpassword'" class="form-control-lg" placeholder="รหัสผ่านใหม่" [(ngModel)]="this.NewPasssword" name="NewPassword">&nbsp;
-                    <button (click)="newpassword()" type="password" class="btn btn-black" style="color: black; font-size: 30px;" > <i class="pi pi-eye-slash"></i></button>
+                    <input [type]="shownewpassword ? 'text' : 'password'" class="form-control-lg" placeholder="รหัสผ่านใหม่" [(ngModel)]="this.NewPasssword" name="NewPassword">&nbsp;
+                    <button (click)="newpassword()" type="password" class="btn btn-black" style="color: black; font-size: 30px;" > 
+                     <i *ngIf= "shownewpassword == false" class="pi pi-eye-slash"></i>
+                     <i *ngIf= "shownewpassword == true" class="pi pi-eye"></i>
+                  </button>
                   </div>
 
                   <button (click)="ChangePassword()" type="submit" class="btn btn-dark" style="color: whitesmoke;">บันทึก</button>&nbsp;&nbsp;

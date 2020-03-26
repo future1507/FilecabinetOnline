@@ -19,6 +19,9 @@ export class CabinetComponent implements OnInit {
   month : string;
   year : string;
 
+  searches : SelectItem[];
+  search : string;
+
   Documentid;
   Filecabinetid;
   DocName;
@@ -64,9 +67,19 @@ export class CabinetComponent implements OnInit {
             {label: 'ธันวาคม ',value: 12}
       ];
       this.years=[];
-        for (let i = 2530; i <= 2563; i++) {
+        for (let i = 2500; i <= 2563; i++) {
           this.years.push({label:''+ i, value: i});
       } 
+
+      this.searches = [
+        {label: 'เลขเอกสาร',value: "Documentid"},
+        {label: 'ชื่อเรื่อง ',value: "Name"},
+        {label: 'ที่มาของเอกสาร ',value: "Source"},
+        {label: 'ส่งถึง ',value: "Sendto"},
+        {label: 'อ้างถึง ',value: "Referto"},
+        {label: 'วันที่ของเอกสาร ',value: "Date"}
+      ];
+
    }
   filename; 
   ShowFilecabinetName;

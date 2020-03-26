@@ -8,13 +8,17 @@
         <p-progressSpinner *ngIf= "alldocument == undefined" class="centerScreen">
 
         </p-progressSpinner> 
-   <p-dataView #dv [value]="alldocument" [paginator]="true" [rows]="2" paginatorPosition="both" filterBy="Name" *ngIf= "alldocument != undefined">
+   <p-dataView #dv [value]="alldocument" [paginator]="true" [rows]="2" paginatorPosition="both" filterBy="{{search}}" *ngIf= "alldocument != undefined">
     <p-header>
         <div class="ui-helper-clearfix">
             <div class="ui-g">
-                <div class="ui-g-6 ui-md-4 filter-container">
+                <div class="ui-g-6 ui-md-1 filter-container">
+                    <p-dropdown [options]="searches" [(ngModel)]="search" placeholder="คลิกเพื่อค้นหาด้วย.." 
+                    [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>&nbsp;&nbsp;
+                </div>
+                <div class="ui-g-6 ui-md-3 filter-container">
                   <div style="position:relative">
-                      <input type="search" pInputText placeholder="ค้นหาด้วยชื่อเรื่่อง" (input)="dv.filter($event.target.value)">
+                      <input type="search" style="width: 100%;height: 35px; "pInputText placeholder="" (input)="dv.filter($event.target.value)">
                   </div>
               </div>
               <div class="ui-g-6 ui-md-4" style="text-align:center">
@@ -116,7 +120,7 @@
           </tbody>
         </table>
     </p-tabPanel>
-    <p-tabPanel header="เพิ่มหัวเอกสาร" *ngIf= "mystatus == 'ผู้รับผิดชอบ'">
+    <p-tabPanel header="เพิ่มเอกสาร" *ngIf= "mystatus == 'ผู้รับผิดชอบ'">
        <br>
         <form style="text-align: center;">
             <div class="form-group">
@@ -139,7 +143,7 @@
          <div >
            <p-dropdown [options]="dates" [(ngModel)]="date" placeholder="วันที่" [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>&nbsp;&nbsp;
            <p-dropdown [options]="months" [(ngModel)]="month" placeholder="เดือน" [virtualScroll]="true" [itemSize]="12" [filter]="false"></p-dropdown>&nbsp;&nbsp;
-           <p-dropdown [options]="years" [(ngModel)]="year" placeholder="ปี พ.ศ" [virtualScroll]="true" [itemSize]="33" [filter]="false"></p-dropdown>
+           <p-dropdown [options]="years" [(ngModel)]="year" placeholder="ปี พ.ศ" [virtualScroll]="true" [itemSize]="64" [filter]="false"></p-dropdown>
          </div>   
          <br>
          <div style="text-align: center;">

@@ -13,7 +13,7 @@ export class DatapassService {
   mystatus;
 
 
-  ip = "http://192.168.255.33";
+  ip = "http://localhost:80";
   //localhost80 = "http://localhost:80";
 
   User = [{Userid : this.Userid,

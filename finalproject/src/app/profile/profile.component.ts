@@ -22,8 +22,7 @@ export class ProfileComponent implements OnInit {
   firstname2;
   lastname2;
   gender2;
-  show: boolean;
-  pp;
+  
   constructor(private acrouter : ActivatedRoute,private http: HttpClient
     ,private data : DatapassService,private router : Router) { 
     //this.Userid = acrouter.snapshot.params['Userid'];
@@ -34,7 +33,6 @@ export class ProfileComponent implements OnInit {
     this.lastname = data.lastname;
     this.gender = data.gender;
     console.log(this.Userid);
-    this.show = false;
   
   }
 
@@ -69,15 +67,14 @@ export class ProfileComponent implements OnInit {
   }
  
 
-// click event function toggle
-password() {
-    this.show = !this.show;
-    
-}
-newpassword() {
-  this.show = !this.show;
-}
-icon() {
-  this.pp = !this.show;
-}
+  // click event function toggle
+  showpassword = false;
+  shownewpassword = false;
+  password() {
+      this.showpassword = !this.showpassword;
+  }
+  newpassword() {
+      this.shownewpassword = !this.shownewpassword;
+  }
+
 }
