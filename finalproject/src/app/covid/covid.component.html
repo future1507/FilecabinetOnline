@@ -25,8 +25,8 @@
           <div _ngcontent-uhe-c1="" 
           class="col-sm-4 align-self-center"> เพศ </div>
           <div _ngcontent-uhe-c1="" class="col-sm-8">
-          <p-dropdown [options]="genders" 
-          [(ngModel)]="gender" placeholder="ชาย"  [virtualScroll]="true" [itemSize]="2" [filter]="false"></p-dropdown>
+            <p-dropdown [options]="genders" 
+            [(ngModel)]="gender" placeholder="เพศ"  [showClear]="false"></p-dropdown>
           </div>
         </div>
 
@@ -55,10 +55,11 @@
         <div _ngcontent-uhe-c1="" class="row top-buffer">
           <div _ngcontent-uhe-c1="" 
           class="col-sm-4 align-self-center"> จังหวัด </div>
+          
           <div _ngcontent-uhe-c1="" class="col-sm-8">
-          <p-dropdown [options]="provinces" 
-          [(ngModel)]="province" placeholder="กรุงเทพมหานคร"  
-          [virtualScroll]="true" [itemSize]="77" [filter]="false"></p-dropdown>
+            <p-dropdown [options]="provinces" 
+            [(ngModel)]="province" placeholder="กรุงเทพมหานคร"  [showClear]="false"></p-dropdown>
+          
           </div>
         </div>
           <p-footer>
@@ -68,12 +69,12 @@
       </p-dialog>
   </div>
   <div class="ui-g-4">แสดงสถานะผู้ป่วย
-    <p-dropdown [options]="statues" [(ngModel)]="status" placeholder="ทั้งหมด" 
-    [virtualScroll]="true" [itemSize]="4" [filter]="false"></p-dropdown>
+    <p-dropdown [options]="statues" 
+    [(ngModel)]="status" placeholder="ทั้งหมด"  [showClear]="false"></p-dropdown>
   </div>
   <div class="ui-g-4">แบ่งผลการแสดง
-  <p-dropdown [options]="records" [(ngModel)]="record" placeholder="3" 
-  [virtualScroll]="true" [itemSize]="3" [filter]="false"></p-dropdown>
+    <p-dropdown [options]="records" 
+    [(ngModel)]="record" placeholder="3"  [showClear]="false"></p-dropdown>
     <br><br>
   </div>
     <table class="table table-striped">
