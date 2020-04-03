@@ -32,6 +32,8 @@ import {LightboxModule} from 'primeng/lightbox';
 import { CovidComponent } from './covid/covid.component';
 import {InputTextModule} from 'primeng/inputtext';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {CalendarModule} from 'primeng/calendar';
+
 
 const routes: Routes = [
   {path:'',component:CovidComponent},
@@ -81,7 +83,9 @@ const routes: Routes = [
     ProgressSpinnerModule,
     LightboxModule,
     InputTextModule,
-    ConfirmDialogModule
+    InputTextModule,
+    CalendarModule
+
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
