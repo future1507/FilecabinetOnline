@@ -1,3 +1,4 @@
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -58,41 +59,57 @@
           </p-footer>
       </p-dialog>
   </div>
-  <div class="ui-g-4">แสดงสถานะผู้ป่วย
-    <p-dropdown [options]="statues" [(ngModel)]="status" placeholder="ทั้งหมด" 
-    [virtualScroll]="true" [itemSize]="4" [filter]="false"></p-dropdown>
-  </div>
-  <div class="ui-g-4">แบ่งผลการแสดง
-  <p-dropdown [options]="records" [(ngModel)]="record" placeholder="3" 
-  [virtualScroll]="true" [itemSize]="3" [filter]="false"></p-dropdown>
-    <br><br>
-  </div>
-    <table class="table table-striped">
-        <thead>
-           <tr>
-             <th>ลำดับที่</th>
-             <th>ชื่อ-นามสกุล</th>
-             <th>เพศ</th>
-             <th>อาชีพ</th>
-             <th>จังหวัด</th>
-             <th>วันที่พบ</th>
-             <th>เวลาที่พบ</th>
-             <th>สถานะปัจจุบัน</th>
-             <th>ลบข้อมูล</th>
-           </tr>
-         </thead>
-         <tbody>
-           <!-- <tr *ngFor="let eligibility of alleligibility; let i = index;">
-              <td>{{eligibility.Userid}}</td>
-              <td>{{eligibility.firstname}}</td>
-              <td>{{eligibility.lastname}}</td>
-              <td >{{eligibility.Userstatus}}
-                 <button *ngIf= "mystatus == 'ผู้รับผิดชอบ' && eligibility.Userid != this.Userid" type="button" 
-                 class="btn btn-secondary float-right" style="font-size: 15px;" (click)="DeleteEligibility(eligibility.Userid)">
-                   ลบ</button>
-              </td>    
-           </tr>    -->
-         </tbody>
-       </table>
       
 </div> 
+<div >
+    <p>แสดงข้อมูลผู้ป่วย</p>
+    <p-dropdown [options]="statues" [(ngModel)]="status" placeholder="ทั้งหมด" [virtualScroll]="true" [itemSize]="4" [filter]="false"
+    ></p-dropdown>
+    <p>แบ่งการแสดงผล</p>
+    <p-dropdown [options]="records" [(ngModel)]="record" placeholder="3" [virtualScroll]="true" [itemSize]="3" [filter]="false"></p-dropdown>
+    <br><br>
+    <p-dataView #dv [value]="covids" [paginator]="true" [rows]="record" paginatorPosition="bottom" filterBy="Status" >
+        <p-header >
+            <table class="table" >
+                   <tr>
+                     <th>ลำดับที่</th>
+                     <th>ชื่อ-นามสกุล</th>
+                     <th>เพศ</th>
+                     <th>อาชีพ</th>
+                     <th>จังหวัด</th>
+                     <th>วันที่พบ</th>
+                     <th>เวลาที่พบ</th>
+                     <th>สถานะปัจจุบัน</th>
+                     <th>ลบข้อมูล</th>
+                   </tr>
+            </table>
+        </p-header>
+        <!-- *ngFor="let i = index;" -->
+        <ng-template let-covid pTemplate="listItem" >
+            <div class="covid-details" >
+                <table class="table">
+                    <tbody>
+                        <tr>
+                           <th scope="row"></th>
+                           <td>{{covid.Name}}</td>
+                           <td>{{covid.Gender}}</td>
+                           <td>{{covid.Career}}</td>
+                           <td >{{covid.Province}}</td>
+                           <td >{{covid.Date}}</td>
+                           <td >{{covid.Time}}</td>
+                           <td >{{covid.Status}}
+                             <i  class="pi pi-pencil" type = "button"></i>
+                           </td>
+                           <td>
+                              <button  type="button" 
+                              class="btn btn-secondary " style="font-size: 15px;" >ลบ</button> 
+                           </td>    
+                        </tr>   
+                    </table>
+            </div>
+            
+
+        </ng-template>
+    </p-dataView>
+</div>  
+

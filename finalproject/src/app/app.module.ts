@@ -31,7 +31,11 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {LightboxModule} from 'primeng/lightbox';
 import { CovidComponent } from './covid/covid.component';
 import {InputTextModule} from 'primeng/inputtext';
+<<<<<<< HEAD
 import {CalendarModule} from 'primeng/calendar';
+=======
+
+>>>>>>> d391d6246429259541d021168f9fa1d35a88e501
 const routes: Routes = [
   {path:'',component:CovidComponent},
   {path:'login',component:LoginComponent},
@@ -79,8 +83,13 @@ const routes: Routes = [
     DropdownModule,
     ProgressSpinnerModule,
     LightboxModule,
+<<<<<<< HEAD
     InputTextModule,
     CalendarModule
+=======
+    InputTextModule
+
+>>>>>>> d391d6246429259541d021168f9fa1d35a88e501
  
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
