@@ -18,7 +18,8 @@
           <div _ngcontent-uhe-c1="" 
           class="col-sm-4 align-self-center"> ชื่อ-นามสกุล </div><div _ngcontent-uhe-c1="" class="col-sm-8">
           <input _ngcontent-uhe-c1="" pinputtext="" style=" width: 100%" type="text" 
-          class="ng-pristine ng-valid ui-inputtext ui-corner-all ui-state-default ui-widget ng-touched">
+          class="ng-pristine ng-valid ui-inputtext ui-corner-all ui-state-default ui-widget ng-touched"
+          [(ngModel)]="Name">
           </div>
         </div>
         <div _ngcontent-uhe-c1="" class="row top-buffer">
@@ -34,13 +35,14 @@
           <div _ngcontent-uhe-c1="" 
           class="col-sm-4 align-self-center"> อาชีพ </div><div _ngcontent-uhe-c1="" class="col-sm-8">
           <input _ngcontent-uhe-c1="" pinputtext="" style=" width: 100%" type="text" 
-          class="ng-pristine ng-valid ui-inputtext ui-corner-all ui-state-default ui-widget ng-touched">
+          class="ng-pristine ng-valid ui-inputtext ui-corner-all ui-state-default ui-widget ng-touched"
+          [(ngModel)]="Career">
           </div>
         </div>
         <div _ngcontent-uhe-c1="" class="row top-buffer">
           <div _ngcontent-uhe-c1="" 
           class="col-sm-4 align-self-center"> วันที่พบ </div><div _ngcontent-uhe-c1="" class="col-sm-8">
-          <p-calendar [(ngModel)]="date1"></p-calendar>
+          <p-calendar [(ngModel)]="date"  [locale]="en"></p-calendar>
           </div>
         </div>
         <div _ngcontent-uhe-c1="" class="row top-buffer" >
@@ -48,7 +50,7 @@
           class="col-sm-4 align-self-center"> เวลา </div><div _ngcontent-uhe-c1="" class="col-sm-8">
           <!-- <input _ngcontent-uhe-c1="" pinputtext="" style=" width: 100%" type="text" 
           class="ng-pristine ng-valid ui-inputtext ui-corner-all ui-state-default ui-widget ng-touched"> -->
-          <p-calendar [(ngModel)]="date8" [timeOnly]="true"></p-calendar>
+          <p-calendar [(ngModel)]="time" [timeOnly]="true"></p-calendar>
           
           </div>
         </div>
@@ -63,8 +65,7 @@
           </div>
         </div>
           <p-footer>
-          <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="สร้าง" ></button>
-          <button type="button" pButton icon="pi pi-times" (click)="displayBasic=false" label="ยกเลิก" class="ui-button-secondary"></button>
+          <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="เพิ่มผู้ป่วยใหม่" (click)="AddCovid()"></button>
           </p-footer>
       </p-dialog>
   </div>
@@ -76,68 +77,57 @@
     <p-dropdown [options]="records" 
     [(ngModel)]="record" placeholder="3"  [showClear]="false"></p-dropdown>
     <br><br>
-    
+  </div>  
 </div>  
-<div>
     <p-dataView #dv [value]="covids" [paginator]="true" [rows]="record" paginatorPosition="bottom" filterBy="Status" >
         <p-header >
-            <table class="table" >
-                   <tr>
-                     <th>ลำดับที่</th>
-                     <th>ชื่อ-นามสกุล</th>
-                     <th>เพศ</th>
-                     <th>อาชีพ</th>
-                     <th>จังหวัด</th>
-                     <th>วันที่พบ</th>
-                     <th>เวลาที่พบ</th>
-                     <th>สถานะปัจจุบัน</th>
-                     <th>ลบข้อมูล</th>
-                   </tr>
-            </table>
+            <input type="hidden" style="width: 100%;height: 35px; "pInputText placeholder="{{status}}" (input)="dv.filter($event.target.value)">
+            <div class="ui-g" >
+                <div class="ui-g-1">ลำดับที่</div>
+                <div class="ui-g-2">ชื่อ-นามสกุล</div>
+                <div class="ui-g-1">เพศ</div>
+                <div class="ui-g-1">อาชีพ</div>
+                <div class="ui-g-1">จังหวัด</div>
+                <div class="ui-g-1">วันที่พบ</div>
+                <div class="ui-g-1">เวลาที่พบ</div>
+                <div class="ui-g-2">สถานะปัจจุบัน</div>
+                <div class="ui-g-2">ลบข้อมูล</div>
+            </div>
         </p-header>
-        <!-- *ngFor="let i = index;" -->
         <ng-template let-covid pTemplate="listItem" >
             <div class="covid-details" >
-                <table class="table">
-                    <tbody>
-                        <tr>
-                           <th scope="row"></th>
-                           <td>{{covid.Name}}</td>
-                           <td>{{covid.Gender}}</td>
-                           <td>{{covid.Career}}</td>
-                           <td >{{covid.Province}}</td>
-                           <td >{{covid.Date}}</td>
-                           <td >{{covid.Time}}</td>
-                           <td >{{covid.Status}}
-                             <i  class="pi pi-pencil" type = "button" (click)="showUpdateDialog()"></i>
-                             <p-dialog header="เปลี่ยนสถานะ" [(visible)]="UpdateDialog" [style]="{width : '20vw'}" [baseZIndex]="10000">
-                                <p-footer>
-                                <p-dropdown [options]="statues" 
-                                [(ngModel)]="covid.Status"  [showClear]="false"></p-dropdown>
-                                </p-footer>
-                            </p-dialog>
-                           </td>
-                           <td>
-                              <button  type="button" 
-                              class="btn btn-secondary " style="font-size: 15px;" 
-                              (click)="showDeleteDialog()">ลบ</button>  
-                              <p-dialog header="Confirmation" [(visible)]="DeleteDialog" [style]="{width: '20vw'}" [baseZIndex]="10000">
-                                <div >   
-                                   <p>ยืนยันการลบข้อมูลผู้ป่วย?</p>
-                                </div>
-                                <p-footer>
-                                <button (click)="DeleteCovid(covid.Id)" type="button" pButton icon="pi pi-check" (click)="DeleteDialog=false" label="Yes" ></button>
-                                <button type="button" pButton icon="pi pi-times" (click)="DeleteDialog=false" label="No" class="ui-button-secondary"></button>
-                                </p-footer>
-                            </p-dialog>
-                           </td>    
-                        </tr>   
-                    </table>
+                    <div class="ui-g">
+                        <div class="ui-g-1">{{covid.Id}}</div>
+                        <div class="ui-g-2">{{covid.Name}}</div>
+                        <div class="ui-g-1">{{covid.Gender}}</div>
+                        <div class="ui-g-1">{{covid.Career}}</div>
+                        <div class="ui-g-1">{{covid.Province}}</div>
+                        <div class="ui-g-1">{{covid.Date}}</div>
+                        <div class="ui-g-1">{{covid.Time}}</div>
+                        <div class="ui-g-2">{{covid.Status}}
+                            <i  class="pi pi-pencil" type = "button" (click)="showUpdateDialog()"></i>
+                            <p-dialog header="เปลี่ยนสถานะ" [(visible)]="UpdateDialog" [style]="{width : '20vw'}" [baseZIndex]="10000">
+                               <p-footer>
+                               <p-dropdown [options]="statues" (change)="UpdateCovid(covid.Id)"
+                               [(ngModel)]="covid.Status" [showClear]="false"></p-dropdown>
+                               </p-footer>
+                           </p-dialog>
+                        </div>
+                        <div class="ui-g-2"><button  type="button" 
+                            class="btn btn-secondary " style="font-size: 15px;" 
+                            (click)="showDeleteDialog()">ลบ</button>  
+                            <p-dialog header="Confirmation" [(visible)]="DeleteDialog" [style]="{width: '20vw'}" [baseZIndex]="10000">
+                              <div >   
+                                 <p>ยืนยันการลบข้อมูลผู้ป่วย?</p>
+                              </div>
+                              <p-footer>
+                              <button (click)="DeleteCovid(covid.Id)" type="button" pButton icon="pi pi-check" (click)="DeleteDialog=false" label="Yes" ></button>
+                              <button type="button" pButton icon="pi pi-times" (click)="DeleteDialog=false" label="No" class="ui-button-secondary"></button>
+                              </p-footer>
+                          </p-dialog></div>
+                    </div>
             </div>
-            
-
         </ng-template>
     </p-dataView>
-</div>
 
 
