@@ -18,19 +18,19 @@ export class CovidComponent implements OnInit {
   statues : SelectItem[];
   status: string;
   provinces: SelectItem[];
-  province: string;
+  province=null;
   records : SelectItem[];
   record: string;
-  gender:string;
+  gender=null;
   genders: SelectItem[];
 
   displayBasic: boolean;
-  date: Date;
-  time: Date;
+  date=null;
+  time=null;
   covids;
 
-  Name;
-  Career;
+  Name=null;
+  Career=null;
 
   constructor(private http: HttpClient,private router : Router
     ,private data : DatapassService) {
@@ -156,8 +156,7 @@ export class CovidComponent implements OnInit {
                   Province : this.province,
                   Date : this.date,
                   Time : this.time};
-    console.log(this.date);
-    console.log(this.time);
+    console.log(json);
     let response = await this.http
     .post(this.data.ip+'/coservice/add', JSON.stringify(json)).toPromise();
     console.log(response);
