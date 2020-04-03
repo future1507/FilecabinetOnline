@@ -118,11 +118,30 @@
                            <td >{{covid.Date}}</td>
                            <td >{{covid.Time}}</td>
                            <td >{{covid.Status}}
-                             <i  class="pi pi-pencil" type = "button"></i>
+                             <i  class="pi pi-pencil" type = "button" (click)="showUpdateDialog()"></i>
+                             <p-dialog header="เปลี่ยนสถานะ" [(visible)]="UpdateDialog" [style]="{width: '20vw'}" [baseZIndex]="10000">
+                                <p-dropdown [options]="statues" [(ngModel)]="covid.Status" 
+                                [virtualScroll]="true" [itemSize]="3" [filter]="false"></p-dropdown>
+                                <p-footer>
+                                <!-- <button (click)="UpdateCovid(covid.Id)" type="button" pButton icon="pi pi-check" (click)="UpdateDialog=false" label="Yes" ></button>
+                                <button type="button" pButton icon="pi pi-times" (click)="UpdateDialog=false" label="No" class="ui-button-secondary"></button> -->
+                                <br><br><br>
+                                </p-footer>
+                            </p-dialog>
                            </td>
                            <td>
                               <button  type="button" 
-                              class="btn btn-secondary " style="font-size: 15px;" >ลบ</button> 
+                              class="btn btn-secondary " style="font-size: 15px;" 
+                              (click)="showDeleteDialog()">ลบ</button>  
+                              <p-dialog header="Confirmation" [(visible)]="DeleteDialog" [style]="{width: '20vw'}" [baseZIndex]="10000">
+                                <div >   
+                                   <p>ยืนยันการลบข้อมูลผู้ป่วย?</p>
+                                </div>
+                                <p-footer>
+                                <button (click)="DeleteCovid(covid.Id)" type="button" pButton icon="pi pi-check" (click)="DeleteDialog=false" label="Yes" ></button>
+                                <button type="button" pButton icon="pi pi-times" (click)="DeleteDialog=false" label="No" class="ui-button-secondary"></button>
+                                </p-footer>
+                            </p-dialog>
                            </td>    
                         </tr>   
                     </table>

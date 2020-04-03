@@ -31,6 +31,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {LightboxModule} from 'primeng/lightbox';
 import { CovidComponent } from './covid/covid.component';
 import {InputTextModule} from 'primeng/inputtext';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 const routes: Routes = [
   {path:'',component:CovidComponent},
@@ -40,7 +41,7 @@ const routes: Routes = [
   {path:'profile/:Userid',component:ProfileComponent},
   {path:'filecabinet/:Filecabinetid',component:CabinetComponent},
   {path:'document/:Documentid',component:DocumentComponent},
-  {path: '**', component: LoginComponent}
+  {path: '**', component: CovidComponent}
 
 ];
 
@@ -79,9 +80,8 @@ const routes: Routes = [
     DropdownModule,
     ProgressSpinnerModule,
     LightboxModule,
-    InputTextModule
-
- 
+    InputTextModule,
+    ConfirmDialogModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

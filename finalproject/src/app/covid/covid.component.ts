@@ -21,6 +21,8 @@ export class CovidComponent implements OnInit {
   dates : SelectItem[];
   date: string;
 
+  
+
   displayBasic: boolean;
 
   covids;
@@ -28,10 +30,7 @@ export class CovidComponent implements OnInit {
   constructor(private http: HttpClient,private router : Router
     ,private data : DatapassService) {
     this.ShowCovid();
-    this.dates = [];
-    for (let i = 1; i <= 31; i++) {
-        this.dates.push({label:''+  i, value: i});
-    }
+    
    
     this.genders = [
       {label:'ชาย',value: 'ชาย'},
@@ -50,7 +49,7 @@ export class CovidComponent implements OnInit {
       {label: '10',value: 10}];
   
    this.provinces = [
-    {label: 'ทั้งหมด',value: 'ทั้งหมด'},
+    //{label: 'ทั้งหมด',value: 'ทั้งหมด'},
     {label: 'ติดเชื้อ',value: 'ติดเชื้อ'},
     {label: 'อาการหนัก',value: 'อาการหนัก'},
     {label: 'รักษาหายแล้ว',value: 'รักษาหายแล้ว'}];
@@ -68,7 +67,25 @@ export class CovidComponent implements OnInit {
   }
   showBasicDialog() {
     this.displayBasic = true;
-   
+  }
+
+  DeleteDialog: boolean;
+  showDeleteDialog() {
+    this.DeleteDialog = true;
+  }
+  async DeleteCovid(Id){
+    let response = await this.http
+        .get(this.data.ip+'/coservice/delete/'+Id).toPromise();
+        console.log(response);
+        this.ShowCovid();
+  }
+
+  UpdateDialog: boolean;
+  showUpdateDialog() {
+    this.UpdateDialog = true;
+  }
+  async UpdateCovid(Id){
 
   }
+  
 }
