@@ -29,9 +29,10 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {DropdownModule} from 'primeng/dropdown';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {LightboxModule} from 'primeng/lightbox';
+import { CovidComponent } from './covid/covid.component';
 
 const routes: Routes = [
-  {path:'',component:LoginComponent},
+  {path:'',component:CovidComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignUpComponent},
   {path:'home/:Userid',component:HomeComponent},
@@ -52,7 +53,8 @@ const routes: Routes = [
     CabinetComponent,
     FooterComponent,
     ProfileComponent,
-    DocumentComponent
+    DocumentComponent,
+    CovidComponent
   ],
   imports: [
     BrowserModule,

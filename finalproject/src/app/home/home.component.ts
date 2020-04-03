@@ -85,8 +85,10 @@ export class HomeComponent implements OnInit {
         console.log(this.Userid);
         let json = { Name : this.NewFilecabinetName
                  , Userid : this.Userid};
+        console.log(json);         
         let response = await this.http
           .post(this.data.ip+'/webservice/newfilecabinet', JSON.stringify(json)).toPromise();
+        console.log(response);
 
         this.ShowFilecabinet();
     }
