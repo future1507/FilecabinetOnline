@@ -31,6 +31,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {LightboxModule} from 'primeng/lightbox';
 import { CovidComponent } from './covid/covid.component';
 import {InputTextModule} from 'primeng/inputtext';
+import {CalendarModule} from 'primeng/calendar';
 const routes: Routes = [
   {path:'',component:CovidComponent},
   {path:'login',component:LoginComponent},
@@ -78,7 +79,8 @@ const routes: Routes = [
     DropdownModule,
     ProgressSpinnerModule,
     LightboxModule,
-    InputTextModule
+    InputTextModule,
+    CalendarModule
  
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
