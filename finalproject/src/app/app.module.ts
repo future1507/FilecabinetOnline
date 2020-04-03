@@ -30,6 +30,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {LightboxModule} from 'primeng/lightbox';
 import { CovidComponent } from './covid/covid.component';
+import {PaginatorModule} from 'primeng/paginator';
 
 const routes: Routes = [
   {path:'',component:CovidComponent},
@@ -77,7 +78,8 @@ const routes: Routes = [
     ScrollingModule,
     DropdownModule,
     ProgressSpinnerModule,
-    LightboxModule
+    LightboxModule,
+    PaginatorModule
  
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
