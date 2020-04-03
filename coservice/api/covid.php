@@ -12,9 +12,11 @@ $app->post('/add', function (Request $request, Response $response, array $args) 
 
     $conn = $GLOBALS['dbconn'];
     $stmt = $conn->prepare("insert into covid 
-    (Name,Gender,Career,Province,Date,Time,Status) values (?,?,?,?,?,?,?)");
-    $stmt->bind_param("sssssss",$bodyArry['Name'], $bodyArry['Gender'], 
-    $bodyArry['Career'],$bodyArry['Province'],$bodyArry['Date'],$bodyArry['Time'],$bodyArry['Status']);
+    (Name,Gender,Career,Province,Date,Time) values (?,?,?,?,?,?)");
+    /*$stmt = $conn->prepare("insert into covid 
+    (Name,Gender,Career,Province,CONVERT(date,Date),CONVERT(time,Time)) values (?,?,?,?,?,?)");*/
+    $stmt->bind_param("ssssss",$bodyArry['Name'], $bodyArry['Gender'], 
+    $bodyArry['Career'],$bodyArry['Province'],$bodyArry['Date'],$bodyArry['Time']);
 
     $stmt->execute();
     $result = $stmt->affected_rows;
