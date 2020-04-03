@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api/selectitem';
-<<<<<<< HEAD
-import { Time } from '@angular/common';
-=======
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { DatapassService } from '../datapass.service';
->>>>>>> d391d6246429259541d021168f9fa1d35a88e501
+import { Time } from '@angular/common';
+
 
 @Component({
   selector: 'app-covid',
   templateUrl: './covid.component.html',
-  styleUrls: ['./covid.component.css']
+  styleUrls: ['./covid.component.css'],
+  
+  
 })
 export class CovidComponent implements OnInit {
+
   statues : SelectItem[];
   status: string;
   provinces: SelectItem[];
@@ -24,10 +25,9 @@ export class CovidComponent implements OnInit {
   genders: SelectItem[];
   dates : SelectItem[];
   date: string;
-  date1: Date;
-  time:Time;
   displayBasic: boolean;
-
+  date8: Date;
+  date1: Date;
   covids;
 
   constructor(private http: HttpClient,private router : Router
@@ -153,8 +153,8 @@ export class CovidComponent implements OnInit {
   }
   showBasicDialog() {
     this.displayBasic = true;
-   
 
   }
   
+ 
 }
