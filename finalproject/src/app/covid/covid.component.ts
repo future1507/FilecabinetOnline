@@ -23,15 +23,15 @@ export class CovidComponent implements OnInit {
   record: string;
   gender=null;
   genders: SelectItem[];
-
+  date1: Date;
   displayBasic: boolean;
   date=null;
   time=null;
   covids;
-
+  date8: Date;
   Name=null;
   Career=null;
-
+  invalidDates: Array<Date>;
   constructor(private http: HttpClient,private router : Router
     ,private data : DatapassService) {
     this.ShowCovid();
@@ -147,6 +147,17 @@ export class CovidComponent implements OnInit {
       dateFormat: 'mm/dd/yy',
       weekHeader: 'Wk'
   };
+  let today = new Date();
+        let month = today.getMonth();
+        let year = today.getFullYear();
+        let prevMonth = (month === 0) ? 11 : month -1;
+        let prevYear = (prevMonth === 11) ? year - 1 : year;
+        let nextMonth = (month === 11) ? 0 : month + 1;
+        let nextYear = (nextMonth === 0) ? year + 1 : year;
+       
+        let invalidDate = new Date();
+        invalidDate.setDate(today.getDate() - 1);
+        this.invalidDates = [today,invalidDate];
   }
 
   async AddCovid(){
@@ -154,7 +165,7 @@ export class CovidComponent implements OnInit {
                   Gender : this.gender,
                   Career : this.Career,
                   Province : this.province,
-                  Date : this.date,
+                  Date:this.date.getDate()+"/"+this.date.getMonth()+"/"+this.date.getFullYear(),
                   Time : this.time};
     console.log(json);
     let response = await this.http

@@ -43,17 +43,13 @@
         <div _ngcontent-uhe-c1="" class="row top-buffer">
           <div _ngcontent-uhe-c1="" 
               class="col-sm-4 align-self-center"> วันที่พบ </div><div _ngcontent-uhe-c1="" class="col-sm-8">
-                <input _ngcontent-uhe-c1="" style=" width: 50%;height: 15px;" type="text" 
-                class="ng-pristine ng-valid ui-inputtext ui-corner-all ui-state-default ui-widget ng-touched"
-                [(ngModel)]="date">
+              <p-calendar [(ngModel)]="date1"></p-calendar>
           </div>
         </div>
         <div _ngcontent-uhe-c1="" class="row top-buffer" >
           <div _ngcontent-uhe-c1="" 
-          class="col-sm-4 align-self-center"> เวลา </div><div _ngcontent-uhe-c1="" class="col-sm-8">
-            <input _ngcontent-uhe-c1="" style=" width: 50%;height: 15px;" type="text" 
-            class="ng-pristine ng-valid ui-inputtext ui-corner-all ui-state-default ui-widget ng-touched"
-            [(ngModel)]="time">
+              class="col-sm-4 align-self-center"> เวลา </div><div _ngcontent-uhe-c1="" class="col-sm-8">
+              <p-calendar [(ngModel)]="date8" [timeOnly]="true"></p-calendar>
           </div>
         </div>
         <div _ngcontent-uhe-c1="" class="row top-buffer">
