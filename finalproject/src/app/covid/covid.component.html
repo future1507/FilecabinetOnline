@@ -13,8 +13,8 @@
   <div class="ui-g-4" style="text-align: center;">
     
       <button type="button" (click)= "showBasicDialog()" pButton icon="pi pi-plus" label="เพิ่มผู้ป่วยใหม่"></button>
-      <p-dialog  header="เพิ่มผู้ป่วยใหม่" [(visible)]="displayBasic" [style]="{width: '25vw'}" [baseZIndex]="10000">
-        <div _ngcontent-uhe-c1="" class="row top-buffer">
+      <p-dialog  header="เพิ่มผู้ป่วยใหม่" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <div _ngcontent-uhe-c1="" class="row top-buffer" [style]="{height: '15vw'}">
           <div _ngcontent-uhe-c1="" 
           class="col-sm-4 align-self-center"> ชื่อ-นามสกุล </div><div _ngcontent-uhe-c1="" class="col-sm-8">
           <input _ngcontent-uhe-c1="" pinputtext="" style=" width: 100%" type="text" 
@@ -76,6 +76,9 @@
     <p-dropdown [options]="records" 
     [(ngModel)]="record" placeholder="3"  [showClear]="false"></p-dropdown>
     <br><br>
+    
+</div>  
+<div>
     <p-dataView #dv [value]="covids" [paginator]="true" [rows]="record" paginatorPosition="bottom" filterBy="Status" >
         <p-header >
             <table class="table" >
@@ -107,13 +110,10 @@
                            <td >{{covid.Time}}</td>
                            <td >{{covid.Status}}
                              <i  class="pi pi-pencil" type = "button" (click)="showUpdateDialog()"></i>
-                             <p-dialog header="เปลี่ยนสถานะ" [(visible)]="UpdateDialog" [style]="{width: '20vw'}" [baseZIndex]="10000">
-                                <p-dropdown [options]="statues" [(ngModel)]="covid.Status" 
-                                [virtualScroll]="true" [itemSize]="3" [filter]="false"></p-dropdown>
+                             <p-dialog header="เปลี่ยนสถานะ" [(visible)]="UpdateDialog" [style]="{width : '20vw'}" [baseZIndex]="10000">
                                 <p-footer>
-                                <!-- <button (click)="UpdateCovid(covid.Id)" type="button" pButton icon="pi pi-check" (click)="UpdateDialog=false" label="Yes" ></button>
-                                <button type="button" pButton icon="pi pi-times" (click)="UpdateDialog=false" label="No" class="ui-button-secondary"></button> -->
-                                <br><br><br>
+                                <p-dropdown [options]="statues" 
+                                [(ngModel)]="covid.Status"  [showClear]="false"></p-dropdown>
                                 </p-footer>
                             </p-dialog>
                            </td>
@@ -138,6 +138,6 @@
 
         </ng-template>
     </p-dataView>
-</div>  
+</div>
 
 

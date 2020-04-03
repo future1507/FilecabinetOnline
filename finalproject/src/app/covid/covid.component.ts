@@ -164,7 +164,6 @@ export class CovidComponent implements OnInit {
         this.ShowCovid();
   }
 
-
   UpdateDialog: boolean;
   showUpdateDialog() {
     this.UpdateDialog = true;
