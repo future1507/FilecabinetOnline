@@ -81,7 +81,7 @@
 </div>  
     <p-dataView #dv [value]="covids" [paginator]="true" [rows]="record" paginatorPosition="bottom" filterBy="Status" >
         <p-header >
-            <input type="hidden" style="width: 100%;height: 35px; "pInputText placeholder="{{status}}" (input)="dv.filter($event.target.value)">
+            <input type="search" style="width: 100%;height: 35px;" [(ngModel)]="status" (input)="dv.filter($event.target.value)">
             <div class="ui-g" >
                 <div class="ui-g-1">ลำดับที่</div>
                 <div class="ui-g-2">ชื่อ-นามสกุล</div>
@@ -94,6 +94,7 @@
                 <div class="ui-g-2">ลบข้อมูล</div>
             </div>
         </p-header>
+         <!-- *ngFor="let covid of covids; let i = index;" -->
         <ng-template let-covid pTemplate="listItem" >
             <div class="covid-details" >
                     <div class="ui-g">
@@ -105,26 +106,27 @@
                         <div class="ui-g-1">{{covid.Date}}</div>
                         <div class="ui-g-1">{{covid.Time}}</div>
                         <div class="ui-g-2">{{covid.Status}}
-                            <i  class="pi pi-pencil" type = "button" (click)="showUpdateDialog()"></i>
+                            <i  class="pi pi-pencil" type = "button" (click)="showUpdateDialog(covid.Id,covid.Status)"></i>
                             <p-dialog header="เปลี่ยนสถานะ" [(visible)]="UpdateDialog" [style]="{width : '20vw'}" [baseZIndex]="10000">
                                <p-footer>
-                               <p-dropdown [options]="statues" (change)="UpdateCovid(covid.Id)"
-                               [(ngModel)]="covid.Status" [showClear]="false"></p-dropdown>
+                               <p-dropdown [options]="statues" [(ngModel)]="UpdateStatus" [showClear]="false"></p-dropdown><br><br>
+                               <button (click)="UpdateCovid()" type="button" pButton icon="pi pi-check" (click)="UpdateDialog=false" label="Yes" ></button>
                                </p-footer>
                            </p-dialog>
                         </div>
                         <div class="ui-g-2"><button  type="button" 
                             class="btn btn-secondary " style="font-size: 15px;" 
-                            (click)="showDeleteDialog()">ลบ</button>  
+                            (click)="showDeleteDialog(covid.Id)">ลบ</button>  
                             <p-dialog header="Confirmation" [(visible)]="DeleteDialog" [style]="{width: '20vw'}" [baseZIndex]="10000">
                               <div >   
                                  <p>ยืนยันการลบข้อมูลผู้ป่วย?</p>
                               </div>
                               <p-footer>
-                              <button (click)="DeleteCovid(covid.Id)" type="button" pButton icon="pi pi-check" (click)="DeleteDialog=false" label="Yes" ></button>
+                              <button (click)="DeleteCovid()" type="button" pButton icon="pi pi-check" (click)="DeleteDialog=false" label="Yes" ></button>
                               <button type="button" pButton icon="pi pi-times" (click)="DeleteDialog=false" label="No" class="ui-button-secondary"></button>
                               </p-footer>
-                          </p-dialog></div>
+                          </p-dialog>
+                        </div>
                     </div>
             </div>
         </ng-template>

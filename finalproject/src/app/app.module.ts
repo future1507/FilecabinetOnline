@@ -31,7 +31,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {LightboxModule} from 'primeng/lightbox';
 import { CovidComponent } from './covid/covid.component';
 import {InputTextModule} from 'primeng/inputtext';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
+
 import {CalendarModule} from 'primeng/calendar';
 
 

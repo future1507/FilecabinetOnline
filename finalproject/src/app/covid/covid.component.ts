@@ -175,23 +175,37 @@ export class CovidComponent implements OnInit {
     this.displayBasic = true;
   }
 
+  Deleteid;
   DeleteDialog: boolean;
-  showDeleteDialog() {
+  showDeleteDialog(Id) {
     this.DeleteDialog = true;
+    this.Deleteid = Id;
+    console.log(this.Deleteid);
   }
-  async DeleteCovid(Id){
+  async DeleteCovid(){
+    console.log(this.Deleteid);
     let response = await this.http
-        .get(this.data.ip+'/coservice/delete/'+Id).toPromise();
+        .get(this.data.ip+'/coservice/delete/'+this.Deleteid).toPromise();
         console.log(response);
         this.ShowCovid();
   }
 
+  UpdateStatus;
+  Updateid;
   UpdateDialog: boolean;
-  showUpdateDialog() {
+  showUpdateDialog(Id,Status) {
     this.UpdateDialog = true;
+    this.UpdateStatus = Status;
+    this.Updateid = Id;
+    console.log(this.Updateid+"="+this.UpdateStatus)
   }
-  async UpdateCovid(Id){
-
+  async UpdateCovid(){
+    let json = {  Status : this.UpdateStatus,
+                  Id : this.Updateid,};
+    let response = await this.http
+    .post(this.data.ip+'/coservice/update', JSON.stringify(json)).toPromise();
+    console.log(response);
+    this.ShowCovid();
   }
   
   
