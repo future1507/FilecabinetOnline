@@ -9,17 +9,25 @@ import { SelectItem } from 'primeng/api/selectitem';
 export class CovidComponent implements OnInit {
   statues : SelectItem[];
   status: string;
+  provinces: SelectItem[];
+  province: string;
   records : SelectItem[];
   record: string;
-
+  gender:string;
+  genders: SelectItem[];
   dates : SelectItem[];
   date: string;
+
+  displayBasic: boolean;
   constructor() {
     this.dates = [];
     for (let i = 1; i <= 31; i++) {
         this.dates.push({label:''+  i, value: i});
     }
-    
+   
+    this.genders = [
+      {label:'ชาย',value: 'ชาย'},
+      {label:'หญิง',value: 'หญิง'}];
     this.statues = [
       {label: 'ทั้งหมด',value: 'ทั้งหมด'},
       {label: 'ติดเชื้อ',value: 'ติดเชื้อ'},
@@ -30,7 +38,17 @@ export class CovidComponent implements OnInit {
       {label: '3',value: 3},
       {label: '5',value: 5},
       {label: '10',value: 10}];
-   }
+  
+   this.provinces = [
+    {label: 'ทั้งหมด',value: 'ทั้งหมด'},
+    {label: 'ติดเชื้อ',value: 'ติดเชื้อ'},
+    {label: 'อาการหนัก',value: 'อาการหนัก'},
+    {label: 'รักษาหายแล้ว',value: 'รักษาหายแล้ว'}];
+  }
    ngOnInit(): void {
+  }
+  showBasicDialog() {
+    this.displayBasic = true;
+   
   }
 }
