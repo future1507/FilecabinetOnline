@@ -13,7 +13,7 @@
   <div class="ui-g-4" style="text-align: center;">
     
       <button type="button" (click)= "showBasicDialog()" pButton icon="pi pi-plus" label="เพิ่มผู้ป่วยใหม่"></button>
-      <p-dialog  header="เพิ่มผู้ป่วยใหม่" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+      <p-dialog  header="เพิ่มผู้ป่วยใหม่" [(visible)]="displayBasic" [style]="{width: '60vw'}" [baseZIndex]="10000">
         <div _ngcontent-uhe-c1="" class="row top-buffer" >
           <div _ngcontent-uhe-c1="" 
               class="col-sm-4 align-self-center"> ชื่อ-นามสกุล </div>
@@ -43,27 +43,27 @@
         <div _ngcontent-uhe-c1="" class="row top-buffer">
           <div _ngcontent-uhe-c1="" 
               class="col-sm-4 align-self-center"> วันที่พบ </div><div _ngcontent-uhe-c1="" class="col-sm-8">
-                <input _ngcontent-uhe-c1="" style=" width: 50%;height: 15px;" type="text" 
+                <!-- <input _ngcontent-uhe-c1="" style=" width: 50%;height: 15px;" type="text" 
                 class="ng-pristine ng-valid ui-inputtext ui-corner-all ui-state-default ui-widget ng-touched"
-                [(ngModel)]="date">
-                <!-- <p-dropdown [options]="days" 
+                [(ngModel)]="date"> -->
+                <p-dropdown [options]="days" 
                 [(ngModel)]="day" placeholder="1"  [showClear]="false"></p-dropdown>
                 <p-dropdown [options]="monthes" 
                   [(ngModel)]="month" placeholder="1"  [showClear]="false"></p-dropdown>
                   <p-dropdown [options]="years" 
-                  [(ngModel)]="year" placeholder="2020"  [showClear]="false"></p-dropdown> -->
+                  [(ngModel)]="year" placeholder="2020"  [showClear]="false"></p-dropdown>
           </div>
         </div>
         <div _ngcontent-uhe-c1="" class="row top-buffer" >
           <div _ngcontent-uhe-c1="" 
               class="col-sm-4 align-self-center"> เวลา </div><div _ngcontent-uhe-c1="" class="col-sm-8">
-                <input _ngcontent-uhe-c1="" style=" width: 50%;height: 15px;" type="text" 
+                <!-- <input _ngcontent-uhe-c1="" style=" width: 50%;height: 15px;" type="text" 
                 class="ng-pristine ng-valid ui-inputtext ui-corner-all ui-state-default ui-widget ng-touched"
-                [(ngModel)]="time">
-                  <!-- <p-dropdown [options]="houres" 
+                [(ngModel)]="time"> -->
+                  <p-dropdown [options]="houres" 
                   [(ngModel)]="houre" placeholder="00"  [showClear]="false"></p-dropdown>
                   <p-dropdown [options]="minutes" 
-                  [(ngModel)]="minute" placeholder="00"  [showClear]="false"></p-dropdown> -->
+                  [(ngModel)]="minute" placeholder="00"  [showClear]="false"></p-dropdown>
                 
           </div>
         </div>
@@ -94,7 +94,7 @@
 </div>  
     <p-dataView #dv [value]="covids" [paginator]="true" [rows]="record" paginatorPosition="bottom" filterBy="Status" >
         <p-header >
-            <!-- <input type="search" style="width: 100%;height: 35px;" [(ngModel)]="status" (input)="dv.filter($event.target.value)"> -->
+            <input type="search" style="width: 100%;height: 35px;" [(ngModel)]="status" (input)="dv.filter($event.target.value)">
             <div class="ui-g" >
                 <div class="ui-g-1">ลำดับที่</div>
                 <div class="ui-g-2">ชื่อ-นามสกุล</div>
