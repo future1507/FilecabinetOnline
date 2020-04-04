@@ -264,7 +264,31 @@ export class CovidComponent implements OnInit {
     console.log(response);
     this.ShowCovid();
   }
-  
-  
+  i=0;
+  Index1(){
+    this.i++;
+    if (this.i>+this.record) {
+      this.i = 1;
+    }
+    return this.i;
+  }
+
+  j=0;
+  Index2(){
+    this.j++;
+    if (this.j>+this.record) {
+      this.j = 1;
+    }
+    return this.j;
+  }
+
+  k=0;
+  Index3(){
+    this.k++;
+    if (this.k>+this.covids.length) {
+      this.k = 1;
+    }
+    return this.k;
+  }
 
 }

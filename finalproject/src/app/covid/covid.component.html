@@ -108,10 +108,12 @@
             </div>
         </p-header>
          <!-- *ngFor="let covid of covids; let i = index;" -->
-        <ng-template let-covid pTemplate="listItem" >
+        <ng-template let-covid pTemplate="listItem">
             <div class="covid-details" >
                     <div class="ui-g">
-                        <div class="ui-g-1">{{covid.Id}}</div>
+                        <div class="ui-g-1" *ngIf= "record == '3'">{{this.Index1()}}</div>
+                        <div class="ui-g-1" *ngIf= "record == '5'">{{this.Index2()}}</div>
+                        <div class="ui-g-1" *ngIf= "record == '10'">{{this.Index3()}}</div>
                         <div class="ui-g-2">{{covid.Name}}</div>
                         <div class="ui-g-1">{{covid.Gender}}</div>
                         <div class="ui-g-1">{{covid.Career}}</div>
